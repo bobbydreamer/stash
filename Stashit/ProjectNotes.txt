@@ -1,3 +1,9 @@
+Starting with firebase 
+Add Firebase to your JavaScript Project
+https://firebase.google.com/docs/web/setup?authuser=0
+
+
+
 Firebase Commands to 
 Local : firebase serve --only functions,hosting
 Deploy: firebase deploy --only functions,hosting
@@ -24,15 +30,25 @@ to know which button is clicked - Use common class - http://jsfiddle.net/daveSal
 
 ------------------------------------------------------------------------------------------
 Github 
-
-git init 
-
 Available in github - https://github.com/bobbydreamer/FeedbackManagementSystem
 
-to update to github use below commands
+Setup commands 
+git init 
+git status 
+git add .
+git status 
+git commit -m 'Added filename'
+git status 
+git remote add origin https://github.com/bobbydreamer/stash.git
+git push -u origin master
+
+Everyday commands
 git status
 git add .
 git status
 git commit -m 'Added filename'
 git push 
 ------------------------------------------------------------------------------------------
+Things to do
+1. Sanitize (Topic, Category & Messages)
+2. Setup Feedback X-Projects
