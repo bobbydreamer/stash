@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> <% include partials/template/head.ejs %> </head>
+
+<style>
+    .stash-container{ background: white; max-width: 900px; margin: 10px auto 10px; padding: 7px 11px; border-radius: 3px; }
+    .stash-title{ font-weight: bold; font-size: 14px; color: rgba(0,0,0,0.6); margin: 0 0 3px;}
+    .stash-cattime{ display:flex; justify-content: flex-end; margin: 0 0 6px;}
+    .stash-category{ color: #ffa100; font-weight: bold; font-size: 12px;  flex:0 auto; padding:0 10px 0 0; border-right: 1px solid grey;}
+    .stash-time{ color: #039be5; font-weight: bold; font-size: 12px; flex:0 auto; padding:0 10px 0 10px; border-right: 1px solid grey;}
+    .stash-edit{ color: #039603; font-weight: bold; font-size: 12px; flex:1; padding:0 0 0 10px;}
+    .stash-notes{ line-height: 100%; margin: 0px 0 5px; font-size: 14px;}
+    .stash-container{ box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
+
+/*    .stash-container2{ background: white; max-width: 900px; margin: 10px auto 10px; padding: 7px 11px; border-radius: 3px; border-left: 10px solid #d32f2f; }    */
+/* #546e7a #1c2a48 1a237e 0d47a1 */
+    .stash-container2{ background:#062350 ; max-width: 900px; margin: 10px auto 10px; padding: 7px 11px; border-radius: 3px; }    
+    .stash-titcattime2{ display:flex; justify-content: flex-end; margin: 0 0 6px;}
+    .stash-title2{ font-weight: bold; font-size: 14px; color: #ffea00  ;  flex:0 auto; padding:0 10px 0 0; border-right: 1px solid grey;}
+    .stash-category2{ color: #eeff41; font-weight: bold; font-size: 13px;  flex:0 auto; padding:0 10px 0 10px; border-right: 1px solid grey;}
+    .stash-time2{ color: #81d4fa; font-weight: bold; font-size: 12px; flex:0 auto; padding:0 10px 0 10px; border-right: 1px solid grey;}
+    .stash-edit2{ color: #039603; font-weight: bold; font-size: 12px; flex:0; padding:0 10PX 0 10px; border-right: 1px solid grey;}
+    .stash-delete2{ color: #039603; font-weight: bold; font-size: 12px; flex:1; padding:0 0 0 10px;}
+    .stash-notes2{ line-height: 100%; margin: 0px 0 5px; font-size: 14px; color:#82b1ff; }
+    .stash-container2{ box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
+
+    .stash-container3{ background: #062350; max-width: 900px; margin: 10px auto 10px; padding: 7px 11px; border-radius: 3px; }
+    .stash-title-others{display:flex; flex-direction: row; justify-content: flex-start; margin: 0 0 6px;}                
+    .stash-title3{ font-weight: bold; font-size: 14px; color: #ffea00;  flex:0 auto; padding:0 10px 0 0; border-right: 1px solid grey;}
+    .stash-others3{ display:flex; justify-content: flex-end; margin: 0 0 6px;}        
+    .stash-category3{ color: #eeff41; font-weight: bold; font-size: 12px;  flex:0 auto; padding:0 10px 0 10px; border-right: 1px solid grey;}
+    .stash-time3{ color: #81d4fa; font-weight: bold; font-size: 12px; flex:0 auto; padding:0 10px 0 10px; border-right: 1px solid grey;}
+    .stash-edit3{ color: #039603; font-weight: bold; font-size: 12px; flex:1; padding:0 10px 0 10px; border-right: 1px solid grey;}
+    .stash-delete3{ color: #039603; font-weight: bold; font-size: 12px; flex:1; padding:0 0 0 10px;}    
+    .stash-notes3{ line-height: 100%; margin: 0px 0 5px; font-size: 14px; color:#82b1ff; }
+    .stash-container3{ box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
+
+    a.category{ color:#76ff03; }
+    a.category:hover{ color:#ff9800 ;}
+
+    a.edit{ color:#e91e63  ; }
+    a.edit:hover{ color:#ff9800 ;}
+
+    /* Button looklike link */
+    button.delete {
+        background:none!important;
+        border:none; 
+        padding:0!important;
+        
+        /*optional*/
+        color:#ce93d8 ;
+        cursor:pointer;
+    }
+    button.delete:hover{
+        background:none!important;
+        border:none; 
+        padding:0!important;
+        
+        /*optional*/
+        color:#ff9800 ;
+        cursor:pointer;
+    }
+
+    .message-container{ background:#f8f8f8 ; max-width: 500px; margin: 10px auto 10px; padding: 7px; border-radius: 3px; }
+    #row1{ display: none; }
+    #row2{ display: none; }
+
+    @media only screen and (max-width: 800px) {
+        .stash-title-others{ flex-direction: column; }
+        .stash-title3{ border-right: none;}
+        .stash-others3{ justify-content: flex-start; }
+        .stash-category3{ padding:0 10px 0 0px; }            
+        .stash-edit3{ flex:0; }
+        .stash-delete3{ flex:0; }            
+    }
+
+</style>
+
+<body id="<%= pageID %>">
+
+    <!--Main Navigation-->
+    <% include partials/template/navbar.ejs %>
+    <!--Main Navigation-->
+    <!--Main layout-->
+    <main class="mt-2">
+
+        <!--Main container-->
+        <div class="container" id="container">
+
+            <div class="col-md-2 mb-1" id="row1">
+                    <h2 class="blue-text" id=""><span>Recently added notes</span><span id="test"></span></h2>                    
+            </div>
+                        
+            <!--Grid row-->
+            <div class="row">                
+                <!--Grid column-->
+                <!--Grid column-->
+            </div>
+            <!--Grid row-->
+
+            <div class="stashContainer" id="contentHolder"></div>
+            
+            <div class="my-5"></div>
+
+            <!-- List -->            
+
+        </div>
+        <!--Main container-->
+
+    </main>
+    <!--Main layout-->
+
+    <div id="demo" hidden>Click me.</div>
+
+    <div class="my-5">&nbsp;</div>
+
+    <!--script defer type="text/javascript" src="stash-common.js"></script-->
+    <script defer type="text/javascript" src="../js/stash.js"></script>
+    
+    <!--Footer & Scripts - Starts -->
+    <% include partials/template/footer.ejs %>
+    <!--Footer & Scripts - Ends -->   
+
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head> <% include partials/template/head.ejs %> 
+    
+    <style>
+    .card-body{
+        background-color: #eeeeee ;        
+    }
+
+    @media only screen and (max-width: 800px) {
+
+    }
+
+    </style>
+    
+    </head>
+           
+    <body id="<%= pageID %>">
+
+    <!--Main Navigation-->
+    <% include partials/template/navbar.ejs %>
+    <!--Main Navigation-->
+
+    <!--Main layout-->
+    <main class="mt-5">
+
+        <!--Main container-->
+        <div class="container">
+
+            
+<!-- Card for writing notes - Starts-->            
+    <!-- Card -->
+    <div class="card">
+
+        <!-- Card body -->
+        <div class="card-body">
+
+            <!-- Material form register -->
+            <form>
+                <p class="h4 text-center py-4">Category Border Colors</p>                
+                <p id="txtStatus" class="text-lowercase font-weight-normal red-text"></p>            
+                <p><small>NOTE:- Color will be used in borders and background of titles and Font color is fixed as white</small></p>
+            
+    <!--Table-->
+    <table class="table table-hover">
+    
+        <!--Table head-->
+        <thead class="mdb-color darken-3">
+            <tr class="text-white">
+                <th>#</th>
+                <th>Category</th>
+                <th>Count</th>
+                <th>Color</th>
+            </tr>
+        </thead>
+        <!--Table head-->
+    
+        <!--Table body-->
+        <tbody id="tbody"></tbody>
+        <!--Table body-->
+    
+    </table>
+    <!--Table-->                    
+
+                <div class="text-center py-4 placeholder="notes" mt-3">
+                        <button type="button" class="btn btn-purple" id="btnUpdate">Update</button>
+                     </div>
+                     
+           </form>
+            <!-- Material form register -->
+
+        </div>
+        <!-- Card body -->
+
+    </div>
+    <!-- Card -->
+       
+
+<!-- Card for writing notes - Ends -->
+
+        </div>
+        <!--Main container-->
+
+    </main>
+    <!--Main layout-->
+
+    <div class="my-5">&nbsp;</div>
+
+    <script defer type="text/javascript" src="../js/stash-common.js"></script>
+    <script defer type="text/javascript" src="../js/categorycolor.js"></script>
+
+    <!--Footer & Scripts - Starts -->
+    <% include partials/template/footer.ejs %>
+    <!--Footer & Scripts - Ends -->
+
+
+</body>
+
+</html>

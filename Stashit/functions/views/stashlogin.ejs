@@ -1,0 +1,54 @@
+<html>
+	<head> 
+		<% include partials/template/head.ejs %> 
+
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web:200">
+		
+		<!-- Custom CSS -->
+		<!--link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"-->
+	</head>	
+
+<body id="<%= pageID %>">
+<div id="pgname" hidden>TestPage</div>
+<br>
+
+<!-- Feedback -->
+<br>
+<div class="Loginbox w3-animate-opacity"> 
+	<div class="Left">
+		<p><span class="Left-Title">Stash Notes</span></p>
+		<p><span class="Left-Desc">Just a simple app to stash your notes. </span></p>
+	</div>
+		
+	<div class="Right">
+		<div class="lblLogin">Login</div>
+		<div class="alert">Your message has been sent</div>
+
+		<div class="Right-Form">
+			<form id="loginForm" method="post">
+				<label id="lblMessage" style="text-align: center;"></label>
+				<p><label id="lblEmail">Email</label><input type = "email" name="email" id="txtEmail" required></p>
+				<p><label id="lblPassword">Password</label><input type = "password" name="name" id="txtPassword" required></p>
+				<p ><button type="button" class="btnEmail" id="btnEmail">Sign-in with Email</button></p>
+				<p ><button type="button" class="btnGoogle" id="btnGoogle">Sign-in with Google</button></p>
+				<p ><button type="button" class="btnRegister" id="btnRegister">Register</button></p>
+				<p ><button type="button" class="btnSignout" id="btnSignout">Signout</button></p>
+			</form>		
+		</div>
+	</div>
+
+</div> 
+
+<br>
+
+
+<a id="demo" hidden>Click me..</a>
+<p id="demoP" hidden></p>
+ 
+ <!-- Custom Javascripts -->
+<script defer type="text/javascript" src="../js/FBAuth.js"></script>
+<link rel="stylesheet" href="../css/stashlogin.css">
+
+</body>
+</html>

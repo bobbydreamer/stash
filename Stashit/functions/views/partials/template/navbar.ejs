@@ -1,0 +1,94 @@
+<header>
+
+    <!--Navbar-->
+    <!-- navbar navbar-expand-lg navbar-light warning-color lighten-5  -->
+    <nav class="navbar navbar-expand-lg navbar-dark blue darken-3">
+
+        <!-- Navbar brand -->
+        <a class="navbar-brand" href="/stash">Stash</a>
+
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="basicExampleNav">
+
+            <!-- Links -->
+            <ul class="navbar-nav mr-auto">
+            <% if(pageID === 'stash' ) { %>                
+                <li class="nav-item active">
+            <% } else { %>
+                <li class="nav-item">
+            <% } %>                        
+                    <a class="nav-link" href="/stash">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+
+                <% if(pageID === 'stashget' ) { %>                
+                    <li class="nav-item active">
+                <% } else { %>
+                    <li class="nav-item">
+                <% } %>                            
+                    <a class="nav-link" href="/category">READ</a>
+                </li>
+
+            <% if(pageID === 'stashput' ) { %>                
+                <li class="nav-item active">
+            <% } else { %>
+                <li class="nav-item">
+            <% } %>                        
+                    <a class="nav-link" href="/put">WRITE</a>
+                </li>
+                
+                <% if(pageID === 'stashcategorycolor' ) { %>                
+                    <li class="nav-item active">
+                <% } else { %>
+                    <li class="nav-item">
+                <% } %>                            
+                        <a class="nav-link" href="/categorycolor">CategoryColors</a>
+                </li>
+                    
+                    
+            </ul>
+            <!-- Links -->
+
+        <!-- Right -->
+        <ul class="navbar-nav nav-flex-icons">
+                <!--li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="userProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/profile">profile</a>
+                            <a class="dropdown-item" href="/feedback">feedback</a>
+                        </div>
+                </li-->
+                
+                <!--li class="nav-item">
+                        <a class="nav-link" href="#" id="userProfile"></a>
+                </li-->
+
+                <li class="nav-item">
+                    <a href="/profile" class="nav-link" id="userProfile"></a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/feedback" class="nav-link"><i class="fa fa-comments mr-2"></i>feedback</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="#" class="nav-link border border-light rounded waves-effect waves-light" id="aSignout">
+                    <i class="fa fa-empire mr-2"></i>signout</a>
+                </li>
+                  
+        </ul>
+                  
+        </div>
+        <!-- Collapsible content -->
+
+    </nav>
+    <!--/.Navbar-->
+
+</header>

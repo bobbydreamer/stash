@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head> <% include partials/template/head.ejs %> 
+    <style>
+    
+    textarea.form-control, textarea.form-control:focus{
+        background-color: #512da8  ;
+        color:#fff;
+    }
+
+    .card-body{
+        background-color: #311b92  ;        
+    }
+
+    /* Input Type = "text" */
+    input.form-control, input.form-control:focus {
+        background-color: #512da8  ;
+            color:#fff;
+    }
+
+    /* Textareas */
+    textarea.form-control::-webkit-input-placeholder, input.form-control::-webkit-input-placeholder {
+    color: #0bf;
+    }
+
+    </style>
+    
+    </head>
+           
+    <body id="<%= pageID %>">
+
+    <!--Main Navigation-->
+    <% include partials/template/navbar.ejs %>
+    <!--Main Navigation-->
+
+    <!--Main layout-->
+    <main class="mt-5">
+
+        <!--Main container-->
+        <div class="container">
+
+<!-- Card for writing notes - Starts-->            
+    <!-- Card -->
+    <div class="card">
+
+        <!-- Card body -->
+        <div class="card-body">
+
+            <!-- Material form register -->
+            <form>
+                <p class="h4 text-center py-4 white-text">Write notes</p>
+                
+                <p id="txtStatus" class="text-lowercase font-weight-normal cyan-text"></p>
+            
+                <!-- Default column sizing form -->
+                <form>                    
+                    <div class="form-row"><!-- Grid row -->                        
+                        <div class="col"><!-- Grid column -->
+                            <!-- Default input -->
+                            <input type="text" class="form-control" placeholder="Topic" id="txtTopic">
+                        </div><!-- Grid column -->                        
+                    </div><!-- Grid row -->                    
+
+                    <br>
+
+                    <div class="form-row"><!-- Grid row -->                        
+                        <div class="col"><input type="text" class="form-control" placeholder="Category" id="txtCategory" list="dlCategory">
+                            <datalist id="dlCategory"></datalist>
+                                                          
+                        </div>
+                        <!-- div class="col"><input type="text" maxlength="7" class="form-control" placeholder="#color" id="txtColor" aria-describedby="colorHelp" style="background-color:#0d47a1; color:white;  ">
+                            <small id="passwordHelpBlockMD" class="form-text text-muted">color input format #0d47a1</small>
+                                                        
+                            
+                        </div -->                        
+
+                    </div><!-- Grid row -->                    
+                </form>
+                <!-- Default column sizing form -->
+                
+                <br>
+
+                <!-- Default textarea -->
+                <div class="form-group">
+                    <textarea class="form-control" id="taNotes" rows="7" placeholder="Notes"></textarea>
+                </div>
+                <p><h6 class="yellow-text">NOTE:- <span class="badge deep-orange darken-3">Default color</span> will be used for the category for highlights to change it go to menu top-left click the drop-down menu.</h6></p>
+                <div class="text-center py-4 placeholder="notes" mt-3">
+                   <button class="btn btn-cyan" id="btnAdd">Add</button>
+                </div>
+           </form>
+            <!-- Material form register -->
+
+        </div>
+        <!-- Card body -->
+
+    </div>
+    <!-- Card -->
+
+<!-- Card for writing notes - Ends -->
+
+        </div>
+        <!--Main container-->
+
+    </main>
+    <!--Main layout-->
+    
+
+    <br><br>
+    <script defer type="text/javascript" src="../js/stash-common.js"></script>
+    <script defer type="text/javascript" src="../js/put.js"></script>
+
+    
+    <!--Footer & Scripts - Starts -->
+    <% include partials/template/footer.ejs %>
+    <!--Footer & Scripts - Ends -->
+
+
+</body>
+
+</html>

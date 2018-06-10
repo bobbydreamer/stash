@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+    <% include partials/template/head.ejs %> 
+
+    <style>
+    .message-container{ background:#f8f8f8 ; max-width: 500px; margin: 10px auto 10px; padding: 7px; border-radius: 3px; }
+
+    #row1{ display: none; }
+    #row2{ display: none; }
+    #table1{ display: none; }
+
+    table.table td, table.table th {
+        padding-top: 0.1rem;
+        padding-bottom: 0.1rem;
+        color:white;
+    }
+        
+    table.table a{
+        color:white;
+        font-size:13px;
+    }        
+
+table.table-hover tbody tr:hover {
+    -webkit-transition: .5s;
+    -o-transition: .5s;
+    transition: .5s;
+    background-color: #59698d ;
+}
+
+    tr{ border-style:hidden; }
+    th{ vertical-align: middle; }
+    td{ vertical-align: middle; }
+    .badge{ margin:5px; font-weight:400; }
+
+    a.edit:hover{ color:white ;}
+    </style>
+
+</head>
+
+<body id="<%= pageID %>">
+
+    <!--Main Navigation-->
+    <% include partials/template/navbar.ejs %>
+    <!--Main Navigation-->
+
+    <!--Main layout-->
+    <main class="mt-5">
+
+        <!--Main container-->
+        <div class="container" id = "container">
+                                
+            <h2 class="white-text">All Categories </h2>
+            <!--Grid row-->
+            <div class="row" id="row1">                    
+                <p class="h5" id="badgeHolder">
+                        <!-- span class="badge" style="background-color: #b71c1c">New</span -->
+                </p>                                                                    
+            </div>
+            <!--Grid row-->
+
+            <!--Grid row-->
+            <h2 class="white-text">All Topics </h2>
+            <div class="row"  id="row2">
+                
+            </div>
+            <!--Grid row-->
+
+            <!--Grid row-->
+            <div class="row">
+                <p class="h5" id="topicHolder">
+                        <!-- span class="badge" style="background-color: #b71c1c">New</span -->
+
+<!--Table-->
+<table class="table table-responsive table-sm w-auto white-text table-hover" id="table1">
+
+
+        <!--Table head-->
+        <thead class="mdb-color darken-2">
+            <tr>
+                <th>#</th>
+                <th>Datetime</th>
+                <th>Category</th>
+                <th>Topics</th>
+            </tr>
+        </thead>
+        <!--Table head-->
+    
+        <!--Table body-->
+        <tbody id="tbody"></tbody>
+        <!--Table body-->
+        
+    </table>
+    <!--Table-->
+
+
+                </p>                                                                    
+            </div>
+            <!--Grid row-->
+        
+
+        </div>
+        <!--Main container-->
+
+    </main>
+    <!--Main layout-->
+    
+    <script defer type="text/javascript" src="../js/stash-common.js"></script>
+    <script defer type="text/javascript" src="../js/category.js"></script>
+    
+    <!--Footer & Scripts - Starts -->
+    <div class="my-5">&nbsp;</div>
+    <% include partials/template/footer.ejs %>
+    <!--Footer & Scripts - Ends -->
+
+</body>
+
+</html>

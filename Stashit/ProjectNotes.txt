@@ -1,0 +1,38 @@
+Firebase Commands to 
+Local : firebase serve --only functions,hosting
+Deploy: firebase deploy --only functions,hosting
+
+https://firebase.google.com/docs/auth/admin/verify-id-tokens
+https://firebase.google.com/docs/hosting/full-config#section-full-firebasejson
+https://firebase.google.com/docs/hosting/full-config
+
+26/April/2018
+Proceeding to use client-side scripting as i have wasted almost 2-weeks trying to figure out server-side scripting(SSR).
+This is a good video for SSR - Server-Side rendering with Firebase  Live Code Session - Supercharged
+But it looks like i have a to learn a lot in Javascript OOP and other things. Since, what i am trying is a prototype and only i will be using majorly, i shouldn't focus more on performance but on making a product.
+Undo Actions - 
+1. Removed https://github.com/firebase/functions-samples/tree/master/authorized-https-endpoint
+2. Function of EJS just to put entire file.
+3. Saved all tryouts in /functions/archive/ files are,
+    a. FBAuth1.js       -- 26/04/2018
+    b. firebase.1.json  -- 26/04/2018
+    c. index.2.js       -- 26/04/2018
+    d. index.1.js
+
+05/May/2018
+to know which button is clicked - Use common class - http://jsfiddle.net/daveSalomon/B486r/
+
+------------------------------------------------------------------------------------------
+Github 
+
+git init 
+
+Available in github - https://github.com/bobbydreamer/FeedbackManagementSystem
+
+to update to github use below commands
+git status
+git add .
+git status
+git commit -m 'Added filename'
+git push 
+------------------------------------------------------------------------------------------

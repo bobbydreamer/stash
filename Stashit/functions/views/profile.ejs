@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+    <% include partials/template/head.ejs %> 
+
+    <link href="../css/profile.css" rel="stylesheet">
+
+</head>
+
+<body id="<%= pageID %>">
+        
+    <!--Main Navigation-->
+    <% include partials/template/navbar.ejs %>
+    <!--Main Navigation-->
+
+    <!--Main layout-->
+    <main class="mt-5">
+
+        <!--Main container-->
+        <div class="container" id = "container">
+                                
+            <!--Grid row-->
+            <div class="row" id="row1">
+            <!-- profile -->
+            <div class="container">
+
+                    <div class="wrapper">
+                        <div class="left-box">
+                            <h3 class="white-text">Profile</h3>
+                        </div>
+                
+                        <div class="right-box white-text">
+                            <div class="image-info">
+                                    <center><img id = "cellPhoto" width="150"></center>
+                            </div>			
+                                
+                            <div  class="profile-info">
+                                <table id="profile-info" cellpadding="5">
+                                    <tr>
+                                        <td class="h6">Name</td>
+                                        <td id = "cellName"></td>
+                                        <!-- td><button type="button" class="btn btn-primary btn-sm">Update</button></td -->
+                                    </tr>
+                
+                                    <tr>
+                                            <td class="h6">Email</td>
+                                            <td id = "cellEmail"></td>
+                                    </tr>
+                
+                                    <tr>
+                                            <td class="h6">UID</td>
+                                            <td id = "cellUid"></td>
+                                    </tr>
+                
+                                    <tr>
+                                        <td class="h6">LastLoginTime</td>
+                                        <td id = "cellLlt"></td>
+                                    </tr>
+                
+                                    <tr>
+                                        <td class="h6">email verified</td>
+                                        <td id = "cellEv"></td>
+                                    </tr>
+                
+                                    <tr>
+                                        <td class="h6">data provider</td>
+                                        <td id = "cellDp"></td>
+                                    </tr>
+                        
+                                </table>
+                            </div>
+                
+                        </div>
+                    </div>
+                
+                </div>                        
+                <!-- profile -->
+    
+            </div>
+            <!--Grid row-->
+
+            <div class="my-5"></div>
+
+        </div>
+        <!--Main container-->
+
+    </main>
+    <!--Main layout-->
+    
+    <script defer type="text/javascript" src="../js/stash-common.js"></script>
+    <script defer type="text/javascript" src="../js/profile.js"></script>
+    
+    <!--Footer & Scripts - Starts -->
+    <div class="my-5">&nbsp;</div>
+    <% include partials/template/footer.ejs %>
+    <!--Footer & Scripts - Ends -->
+
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+/* Feedback */
+.thankyou1{	
+	font-family: 'ABeeZee', sans-serif;
+	font-size: 3.5vw;
+	color:#fff;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.thankyou2{
+	font-family: 'Titillium Web', sans-serif;
+	font-size: 3vw;
+	color:#ffff27;
+	text-decoration: none;
+	font-weight:200
+}
+
+.tellmewhatyouthink{
+	font-family: 'ABeeZee', sans-serif;
+	font-size: 2.5vw;
+	color:#3cc47c;
+    text-decoration: none;	
+    
+}
+
+.alert{
+ text-align:center;
+ padding:3px;
+ font-family: 'Titillium Web', sans-serif;
+ font-size: 2.5vw;
+ background:#f2bd0d;
+ color:#000;
+ margin-bottom:10px;
+ display:none;
+}
+
+.Feedback{/* Feedback Box */
+	max-width: 1170px;
+	margin-left: auto;
+	margin-right: auto;
+	background:#1C2828;
+    font-size: 100%;
+    width:85vw;    
+    position: relative;    
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.9);
+    padding: 1em;
+}
+
+.feedbackLeft{ /* Note - fa fa icons */
+	text-align: center;
+	padding-left:2em;
+}
+
+.feedbackRight{ /* Note - Content */	
+	text-align: left;	
+	padding:0em 1em 1em 1em; /* clockwise */
+}
+
+.feedbackRightForm form{
+	display: grid;
+	grid-template-columns:1fr 1fr;
+	grid-gap:20px;
+    font-size: 75%;
+    color:#fff;
+    
+}
+
+.feedbackRightForm form label{
+	display:block;
+	font-family: 'Titillium Web', sans-serif;
+	font-size: 2.5vw;
+    margin: 5px;
+}
+
+.feedbackRightForm form p{
+	margin:0; 
+}
+
+.feedbackRightForm form .full{
+	grid-column:1 / 3;
+}
+
+.feedbackRightForm form button, .feedbackRightForm form input, .feedbackRightForm form textarea{
+	width:100%;
+	padding:0.5em;
+	font-size: 15px;
+	color:#000;
+	border: 1px solid #00aaff;
+	background-color: #c6ffc6;
+}
+
+.feedbackRightForm form button{
+	background-color:#d98310;
+	border:0;
+	text-transform: uppercase;
+	color:#fff;
+}
+
+.feedbackRightForm form button:hover, .feedbackRightForm form button:focus{
+	/*background:#E50914; //red */
+	background:#88d317;
+	color:#fff;
+	border:0;
+	outline:0;
+	transition: background-color 1s ease-out;
+}
+
+/* if screen >= 600px execute below statements */
+@media screen and (min-width: 600px) {
+	.Feedback{
+		display:grid;
+		grid-template-columns:1fr 2fr;
+	}
+
+	.feedbackLeft{
+		text-align: left;
+	}
+
+	.feedbackRight{
+		padding-top:1em;
+	}
+
+	.thankyou1{
+		font-size: 3vw;
+	}
+
+	.thankyou2{
+		font-size: 1.5vw;
+	}
+
+	.alert{
+		font-size: 1vw;
+	}
+
+	.feedbackRightForm form label{
+		font-size: 1vw; 
+	}
+}

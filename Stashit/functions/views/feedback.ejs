@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+    <% include partials/template/head.ejs %> 
+
+    <link href="../css/feedback.css" rel="stylesheet">
+
+</head>
+
+<body id="<%= pageID %>">
+        
+    <!--Main Navigation-->
+    <% include partials/template/navbar.ejs %>
+    <!--Main Navigation-->
+
+    <!--Main layout-->
+    <main class="mt-5">
+
+        <!--Main container-->
+        <div class="container" id = "container">
+
+            <br>
+            <!--Grid row-->
+            <div class="row" id="row1">
+
+            <!-- Feedback -->
+            <div class="Feedback"> 
+                <div class="FeedbackLeft">
+                    <p><span class="thankyou1">Thank you for visiting my website</span></p>
+                    <p><span class="thankyou2">I hope you found it useful</span></p>
+                </div>
+                    
+                <div class="FeedbackRight">
+                    <div class="tellmewhatyouthink">Tell me what you think</div>
+                    <div class="alert" id="alert">Your message has been sent</div>
+                    <div class="feedbackRightForm">
+                        <form id="contactForm">
+                            <div id="pgname" hidden>Homepage</div>
+                            <p><label>Name</label><input type = "text" name="name" id="name" required></p>
+                            <p><label>Email</label><input type = "email" name="email" id="email" required></p>
+                            <p class="full"><label>Message</label><textarea rows="5" name="message" id="message" placeholder="type-in your valuable feedback"></textarea></p>
+                            <p class="full"><button type='button' id="btnSubmit">Submit</button></p>
+                        </form>     
+                    </div>
+                </div>
+
+            </div>             
+            <!-- Feedback -->
+    
+            </div>
+            <!--Grid row-->
+
+            <div class="my-5"></div>
+
+        </div>
+        <!--Main container-->
+
+    </main>
+    <!--Main layout-->
+    
+    <script defer type="text/javascript" src="../js/stash-common.js"></script>
+    <script defer type="text/javascript" src="../js/feedback.js"></script>
+    
+    <!--Footer & Scripts - Starts -->
+    <div class="my-5">&nbsp;</div>
+    <% include partials/template/footer.ejs %>
+    <!--Footer & Scripts - Ends -->
+
+</body>
+
+</html>
