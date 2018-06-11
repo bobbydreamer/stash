@@ -62,6 +62,20 @@ document.addEventListener('DOMContentLoaded', event => {
         }).join(' ');
     }
 */      
+
+    function sanitize(string) {
+        const map = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#x27;',
+            "/": '&#x2F;',
+        };
+        const reg = /[&<>"'/]/ig;
+        return string.replace(reg, (match)=>(map[match]));
+    }
+  
     btnAdd.addEventListener('click', e => {
 
         //txtStatus.innerHTML
@@ -71,12 +85,14 @@ document.addEventListener('DOMContentLoaded', event => {
             const auth = firebase.auth();
             const uid = auth.currentUser.uid; //var userId = firebase.auth().currentUser.uid;
     
-            let topic = txtTopic.value;
-            let category = txtCategory.value;
-            let notes = taNotes.value.replace(/\n/g, "<BR />");        
+            let topic = sanitize(txtTopic.value);
+            let category = sanitize(txtCategory.value);
             let dateSaved = Date.now();
             let color = '#ff3d00'; //'#6a1b9a' - purple;
-    
+
+            let notes = sanitize(taNotes.value);
+            notes = notes.replace(/\n/g, "<BR />");        
+
             //console.log(topic, category, notes, dateSaved);
     
             var addNotes = { topic, category, notes, dateSaved };

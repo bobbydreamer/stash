@@ -72,16 +72,30 @@ document.addEventListener('DOMContentLoaded', event => {
         return date.getFullYear()+''+Math.ceil((((date - onejan) / 86400000) + onejan.getDay() + 1) / 7);
     }
 
+    function sanitize(string) {
+        const map = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#x27;',
+            "/": '&#x2F;',
+        };
+        const reg = /[&<>"'/]/ig;
+        return string.replace(reg, (match)=>(map[match]));
+    }
+    
     function prepareData(){
         const auth = firebase.auth();
 
         var updates = {};
         const uid = auth.currentUser.uid; //var userId = firebase.auth().currentUser.uid;    
         let subject = 'Stash - Feedback from '+uid;
-        let name = txtName.value;            
-        let email = txtEmail.value;
+        let name = sanitize(txtName.value);
+        let email = sanitize(txtEmail.value);
         let application = 'stash';
-        let message = txtMessage.value.replace(/\n/g, "<br />");     
+        let message = sanitize(txtMessage.value);
+        message = message.replace(/\n/g, "<br />");     
         let dateSaved = Date.now();
         let status = 'active', category='none';
         // console.log(uid, page, name, email, comment, dateSaved);            

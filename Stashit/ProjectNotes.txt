@@ -1,7 +1,10 @@
+
 Starting with firebase 
 Add Firebase to your JavaScript Project
 https://firebase.google.com/docs/web/setup?authuser=0
 
+Configure Multiple Projects
+https://firebase.google.com/docs/configure/
 
 
 Firebase Commands to 
@@ -50,5 +53,19 @@ git commit -m 'Added filename'
 git push 
 ------------------------------------------------------------------------------------------
 Things to do
-1. Sanitize (Topic, Category & Messages)
-2. Setup Feedback X-Projects
+1. Done - Sanitize (Topic, Category & Messages) - User:Brandon Mintern - https://stackoverflow.com/questions/2794137/sanitizing-user-input-before-adding-it-to-the-dom-in-javascript
+2. Done - Setup Feedback Cross-Projects Update
+3. Find links and add anchor tag to it
+4. Done - Fancy login & other screens - bgimage added
+------------------------------------------------------------------------------------------
+Texts for readme.md
+You can two options to sign-in
+1. Sign-in with email
+2. Google
+
+1. Sign-in with email
+Email id you mention doesn't have to exist, it can be anything(i.e., elon@tesla.com ) as i will not be sending any emails for verification, if you forget your password thats it, there is no way you can access your data.
+
+2. Google
+Sign-in with google credentials
+
