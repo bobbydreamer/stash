@@ -14,7 +14,7 @@ Deploy: firebase deploy --only functions,hosting
 https://firebase.google.com/docs/auth/admin/verify-id-tokens
 https://firebase.google.com/docs/hosting/full-config#section-full-firebasejson
 https://firebase.google.com/docs/hosting/full-config
-
+------------------------------------------------------------------------------------------
 26/April/2018
 Proceeding to use client-side scripting as i have wasted almost 2-weeks trying to figure out server-side scripting(SSR).
 This is a good video for SSR - Server-Side rendering with Firebase  Live Code Session - Supercharged
@@ -69,3 +69,40 @@ Email id you mention doesn't have to exist, it can be anything(i.e., elon@tesla.
 2. Google
 Sign-in with google credentials
 
+------------------------------------------------------------------------------------------
+Login page pictures was designed in https://pattern.flaticon.com/#pack=clear-icons
+------------------------------------------------------------------------------------------
+Database rules
+
+Initial rules :-    
+{
+  "rules": {
+    ".read": true,
+    ".write": true
+  }
+}
+
+New rules :-
+{
+  "rules": {
+    "categories": {
+      "$uid": {
+        ".read": "auth.uid == $uid",
+        ".write": "auth.uid == $uid"
+      }
+    },
+    "stash": {
+      "$uid": {
+        ".read": "auth.uid == $uid",
+        ".write": "auth.uid == $uid"
+      }
+    },
+    "users": {
+      "$uid": {
+        ".read": "auth.uid == $uid",
+        ".write": "auth.uid == $uid"
+      }
+    }      
+  }
+}
+------------------------------------------------------------------------------------------

@@ -20,11 +20,6 @@ document.addEventListener('DOMContentLoaded', event => {
     // Retrieve the database.
     var secondaryDatabase = secondary.database();
 
-    function feedbacks(){
-        var appListRef = secondaryDatabase.ref().child('ApplicationList');
-        return appListRef.once('value').then(snap => snap.val());        
-    }
-
     //function
     function getName(firebaseUser){
         var userNameRef = firebase.database().ref().child('users/' + firebaseUser.uid +'/name');

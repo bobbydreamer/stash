@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', event => {
     }
 
     function listAllTopics(data){
-        // console.log('in listAllTopics - Data = ', data);
+        //  console.log('in listAllTopics - Data = ', data);
         //removeChilds(topicHolder);                   
 
         let keys = Object.keys(data);
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', event => {
             //catColors.hasOwnProperty(category)
             //console.log('Check topics exist in categories = ',data[category].hasOwnProperty('topics'));
             if(!data[category].hasOwnProperty('topicsInfo')){
-                return 0;
+                continue;
             }else{
                 //tCount = Object.keys(data[category].topics);
                 tCount = Object.keys(data[category].topicsInfo);

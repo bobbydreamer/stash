@@ -174,7 +174,9 @@ document.addEventListener('DOMContentLoaded', event => {
                 txtCategory.value = data.category;
                 //let notes = taNotes.value.replace(/\n/g, "<br />");        
                 //taNotes.value = data.notes;                
-                taNotes.value = data.notes.replace(/<br\s*[\/]?>/gi, "\n");
+                var tempNotes = document.createElement("div");
+                tempNotes.innerHTML = data.notes.replace(/<br\s*[\/]?>/gi, "\n");
+                taNotes.value = tempNotes.innerText;
                 //console.log(taNotes.value);
                 oldCategory = txtCategory.value;
             }).catch( (error) => {

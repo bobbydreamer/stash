@@ -42,25 +42,11 @@ document.addEventListener('DOMContentLoaded', event => {
         });
 
     });
-/*    
-    function categoryList(uid){
-        return new Promise( (resolve, reject) => {
-            var catList = firebase.database().ref().child('categories').child(uid).child('categoryList');
-            var catColors = {};
-            
-            catList.on('value', function(snap) {
-                catColors = snap.val();
-                console.log('catColors', catColors);
-                resolve('OK');
-            });            
-        });        
-    }
-*/
+
     function categoryList(uid){
         var catList = firebase.database().ref().child('categories').child(uid).child('categoryList');           
         return catList.once('value').then(snap => snap.val());
     }
-
 
     $('#contentHolder').on('click','.delete', function(){
         var temp = $(this).attr('id');
@@ -88,18 +74,6 @@ document.addEventListener('DOMContentLoaded', event => {
     firebase.auth().onAuthStateChanged(firebaseUser => {
         if(firebaseUser){
             //console.log('stash - stash - Logged In');
-            
-            if(firebaseUser.providerData[0].providerId == 'password'){
-                if(firebaseUser.displayName == null){
-                   name.innerText = firebaseUser.email;
-                }else
-                   name.innerText = firebaseUser.displayName;
-                //console.log('Firebase Email User = ',firebaseUser);
-            }else{//google.com
-                name.innerText = firebaseUser.displayName;
-                //console.log('Firebase Google User = ',firebaseUser);
-            }
-            
             user = firebaseUser;            
             //console.log('UID = ', user.uid);
             categoryList(user.uid).then( catList => {
@@ -115,14 +89,6 @@ document.addEventListener('DOMContentLoaded', event => {
                 }
             });
 
-            //document.getElementById('user').innerText=firebaseUser.displayName;
-            //console.log('firebaseUser - ',firebaseUser); 
-            //document.getElementById("fullBody").style.display='inherit';
-            
-        } else {
-            setTimeout( () => {
-                window.location = "/";
-            }, 5);            
         }
     
     });
@@ -132,22 +98,6 @@ document.addEventListener('DOMContentLoaded', event => {
 
         var ref = firebase.app().database().ref('stash');
         var userStash = ref.child(user.uid);
-/*
-        userStash.on('child_changed', function (snap) {
-            // console.log('child_changed = ',snap.val());
-            //console.log('child_changed key = ',snap.key);
-
-            let topic = snap.val().topic;
-            let category = snap.val().category;
-            let dateSaved = unixts2stdts(snap.val().dateSaved);
-            let actionText = 'EDIT';
-            let notes = snap.val().notes;
-            let key = snap.key;
-
-            makeCard(key, topic, category, dateSaved, actionText, notes);
-            
-        });
-*/
 
         //TODO := Change it from child_added onValue
         userStash.limitToLast(200).on('value', (snap) => { 
@@ -186,10 +136,6 @@ document.addEventListener('DOMContentLoaded', event => {
     
                 makeCard(key, topic, category, dateSaved, actionText, notes);
             }
-
-            //console.log('child_added key = ',snap.key);
-            //console.log('child_added JSON Data = ', snap.val().notes);
-            //console.log(catColors);
 
         });
                 
@@ -255,59 +201,6 @@ document.addEventListener('DOMContentLoaded', event => {
         contentHolder.insertBefore(stashContainer3, contentHolder.childNodes[0]);
     }
 
-/*
-    function makeCard(key, topic, category, dateSaved, actionText, notes){
-        var sc2 = document.createElement("div");
-        $(sc2).attr('style', 'border-left: 10px solid '+ catColors[category] +';');
-        $(sc2).addClass("stash-container2");        
-
-        let stct2 = document.createElement("div");
-        $(stct2).addClass("stash-titcattime2");
-            var stitle2 = document.createElement("div");
-            $(stitle2).addClass("stash-title2");
-            $(stitle2).html(topic);
-            var scat2 = document.createElement("div");
-            $(scat2).addClass("stash-category2");
-            var anchorCategory = document.createElement("a");
-            $(anchorCategory).attr('href', '/category/'+category).attr('target','_blank').attr('class','category');
-            anchorCategory.innerText = category;
-            scat2.appendChild(anchorCategory);            
-            $(scat2).html(anchorCategory);
-            //$(scat2).html(category);
-//
-            var stim2 = document.createElement("div");
-            $(stim2).addClass("stash-time2");
-            $(stim2).html(unixts2stdts(dateSaved));
-//
-            var sedt2 = document.createElement("div");
-            $(sedt2).addClass("stash-edit2");
-            var anchorTopicEdit = document.createElement("a");
-            $(anchorTopicEdit).attr('href', '/put/'+key).attr('target','_blank').attr('class','edit');
-            anchorTopicEdit.innerText = actionText;
-            sedt2.appendChild(anchorTopicEdit);
-// 
-            let sdel2 = document.createElement("div");
-            $(sdel2).addClass("stash-delete2");
-            let buttonDel = document.createElement("button");
-            $(buttonDel).attr('class','delete').attr('id',user.uid+','+category+','+key);
-            buttonDel.innerText = "REMOVE";
-            sdel2.appendChild(buttonDel);
-//
-            //$(sedt2).html(actionText);
-        var snote2 = document.createElement("div");
-        $(snote2).addClass("stash-notes2");
-        $(snote2).html(notes);
-        $(stct2).append(stitle2);
-        $(stct2).append(scat2);
-        $(stct2).append(stim2);
-        $(stct2).append(sedt2);
-        $(stct2).append(sdel2);
-        $(sc2).append(stct2);
-        $(sc2).append(snote2);
-        //$("#contentHolder").append(sc2);
-        contentHolder.insertBefore(sc2, contentHolder.childNodes[0]);
-    }
-*/
     function messageCard(title, subtitle, close){
         var mc = document.createElement("div");
         $(mc).addClass("message-container");        
@@ -348,6 +241,5 @@ document.addEventListener('DOMContentLoaded', event => {
         //contentHolder.insertBefore(mc, contentHolder.childNodes[0]);
 
     }
-
 
 });

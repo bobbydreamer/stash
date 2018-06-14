@@ -28,11 +28,11 @@ document.addEventListener('DOMContentLoaded', event => {
                 if(firebaseUser.displayName == null){
                    name.innerText = firebaseUser.email;
                 }else
-                   name.innerText = firebaseUser.displayName;
+                   name.innerText = firebaseUser.displayName.toLowerCase();
                 //console.log('Firebase Email User = ',firebaseUser);
             }else{//google.com
-                name.innerText = firebaseUser.displayName;
-                //console.log('Firebase Google User = ',firebaseUser);
+                name.innerText = firebaseUser.displayName.toLowerCase();
+                // console.log('Firebase Google User = ',firebaseUser);
             }            
             //document.getElementById('user').innerText=firebaseUser.displayName;
             //console.log('firebaseUser - ',firebaseUser); 

@@ -1,17 +1,4 @@
 document.addEventListener('DOMContentLoaded', event => {
-
-    /*    
-    // Initialize Firebase - Already Initialized via <script defer src="/__/firebase/init.js"></script>, so commenting below code.
-    var config = {
-        apiKey: "AIzaSyBcMCBrkdWqigsCACR3MWF6r6G5e2MYcpQ",
-        authDomain: "api-project-333122123186.firebaseapp.com",
-        databaseURL: "https://api-project-333122123186.firebaseio.com",
-        projectId: "api-project-333122123186",
-        storageBucket: "api-project-333122123186.appspot.com",
-        messagingSenderId: "333122123186"
-    };
-    firebase.initializeApp(config);
-    */
     
     // get elements
     const email = document.getElementById('txtEmail');
@@ -21,6 +8,8 @@ document.addEventListener('DOMContentLoaded', event => {
     const register = document.getElementById('btnRegister');
     const signout = document.getElementById('btnSignout');
     const Loginbox = document.getElementsByClassName('Loginbox');
+    const message = document.getElementById('lblMessage');
+    const loginbox = document.getElementById('Loginbox');
     
     const demo = document.getElementById('demo');
     const demoP = document.getElementById('demoP');
@@ -32,40 +21,53 @@ document.addEventListener('DOMContentLoaded', event => {
         document.getElementsByClassName('Loginbox').style.display = 'visible';
     }
 */
-     function updateUserDetails() {
-        // Update USER details.
 
-        var user = firebase.auth().currentUser;
-        var name, email, photoUrl, uid, emailVerified, providerId, lastloginTime, creationTime;
-        
-        if (user != null) {
-          name = user.displayName;
-          email = user.email;
-          photoUrl = user.photoURL;
-          emailVerified = user.emailVerified;
-          uid = user.uid;
-          lastloginTime = user.metadata.lastSignInTime;
-          creationTime = user.metadata.creationTime;
+function getStatus(user){
+    var statusRef = firebase.database().ref().child('/users/' + user.uid +'/status');
+    return statusRef.once('value').then(snap => snap.val());        
+}
 
-          // Get a user's provider-specific profile information
-          user.providerData.forEach(function (profile) {
-            providerId = profile.providerId;
-            // console.log("Sign-in provider: " + providerId);
-            // console.log("  Provider-specific UID: " + profile.uid);
-            // console.log("  Name: " + profile.displayName);
-            // console.log("  Email: " + profile.email);
-            // console.log("  Photo URL: " + profile.photoURL);
-          });
-          
-        }
+const setUserDetails = user => {
+    return new Promise( (resolve, reject) => {            
 
-        var user = { name, email, photoUrl, uid, emailVerified, providerId, lastloginTime, creationTime };
+        getStatus(user).then( (snap) => {
+            // console.log('Snap = ',snap);
+            if(snap==null || snap == 'active'){
+                var name, email, photoUrl, uid, emailVerified, providerId, lastloginTime, creationTime, status;        
+                // console.log('New User ', user);
+                name = (user.displayName == null)?'Bruce Wayne' : user.displayName.toLowerCase();
+                email = user.email;
+                photoUrl = user.photoURL;
+                emailVerified = user.emailVerified;
+                uid = user.uid;
+                lastloginTime = user.metadata.lastSignInTime;
+                creationTime = user.metadata.creationTime;
+                status = 'active';
+
+                // Get a user's provider-specific profile information
+                user.providerData.forEach(function (profile) {
+                    providerId = profile.providerId;
+                    // console.log("Sign-in provider: " + providerId);
+                    // console.log("  Provider-specific UID: " + profile.uid);
+                    // console.log("  Name: " + profile.displayName);
+                    // console.log("  Email: " + profile.email);
+                    // console.log("  Photo URL: " + profile.photoURL);
+                });
+
+                var userData = { name, email, photoUrl, uid, emailVerified, providerId, lastloginTime, creationTime, status };
                 
-        // Write the new post's data simultaneously in the posts list and the user's post list.
-        var updates = {};
-        updates['/users/stash/' + uid] = user;      
-        return firebase.database().ref().update(updates);
-    }
+                var updates = {};
+                updates['/users/' + uid] = userData;      
+                firebase.database().ref().update(updates);          
+                resolve('authorized');
+            }else{
+                reject('Sorry! You are not authorized');
+            }
+
+        });
+        
+    });
+};
 
     // sign-in with email
     signInEmail.addEventListener("click", e =>{
@@ -100,7 +102,7 @@ document.addEventListener('DOMContentLoaded', event => {
                 signInEmail.style.display = 'none';
                 register.style.display = 'inline';        
             }        
-        });  
+        });
     
     });
     
@@ -143,25 +145,6 @@ document.addEventListener('DOMContentLoaded', event => {
         });          
         firebase.auth().signInWithPopup(provider);
         
-        /*firebase.auth().signInWithPopup(provider).then(function(result) {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            var token = result.credential.accessToken;
-            // The signed-in user info.
-            var user = result.user;
-            // ...
-          }).catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            console.log('Google Error : ', errorCode,' ',errorMessage);
-            // The email of the user's account used.
-            var email = error.email;
-            console.log('Email used : ',error.email);
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
-            console.log('Credential Used : ',credential);
-            // ...
-          }); */
     });    
     
     // signout
@@ -175,39 +158,63 @@ document.addEventListener('DOMContentLoaded', event => {
     });
 
     // Check AUTH state change
-    firebase.auth().onAuthStateChanged(firebaseUser => {
+    firebase.auth().onAuthStateChanged(firebaseUser => {        
+        $("body").fadeIn("fast");
         if(firebaseUser){
-            updateUserDetails();
-            // console.log('onAuthStateChanged - FBAuth');
-
-            document.getElementById('lblMessage').style.display='inline';
-    /*        console.log(firebaseUser.createdAt, ' ', firebaseUser.lastLoginAt); //Not able to get this data */
-    
-            if(firebaseUser.providerData[0].providerId == 'password'){
-                document.getElementById('lblMessage').innerHTML = 'Hello '+firebaseUser.email;
-                // console.log('Firebase Email User = ',firebaseUser);
-            }else{//google.com
-                //document.getElementById('lblMessage').innerHTML = 'Hello '+firebaseUser.displayName+' - '+firebaseUser.email+' - '+firebaseUser.photoURL+' - '+firebaseUser.emailVerified+' - '+firebaseUser.uid;
-                document.getElementById('lblMessage').innerHTML = 'Hello '+firebaseUser.displayName;
-                // console.log('Firebase Google User = ',firebaseUser);
-            }
-    
-            setTimeout( () => {
-                // console.log('Routing to /stash')
-                window.location = "/stash";
-            }, 1000);
-    
-            document.getElementById('lblEmail').style.display='none';
-            email.style.display = 'none';
-            document.getElementById('lblPassword').style.display='none';
-            password.style.display = 'none';
             
-            signInGoogle.style.display = 'none';
-            signInEmail.style.display = 'none';
-            register.style.display = 'none';
-            signout.style.display = 'none';
+            setUserDetails(firebaseUser).then( (results) => {
+                // console.log('onAuthStateChanged - FBAuth', results);
+
+                message.style.display='inline';
+        /*        console.log(firebaseUser.createdAt, ' ', firebaseUser.lastLoginAt); //Not able to get this data */
+        
+                if(firebaseUser.providerData[0].providerId == 'password'){
+                    message.innerHTML = 'Hello '+firebaseUser.email;
+                    // console.log('Firebase Email User = ',firebaseUser);
+                }else{//google.com
+                    //message.innerHTML = 'Hello '+firebaseUser.displayName+' - '+firebaseUser.email+' - '+firebaseUser.photoURL+' - '+firebaseUser.emailVerified+' - '+firebaseUser.uid;
+                    message.innerHTML = 'Hello '+firebaseUser.displayName;
+                    // console.log('Firebase Google User = ',firebaseUser);
+                }
+        
+                setTimeout( () => {
+                    // console.log('Routing to /stash')
+                    window.location = "/stash";
+                }, 1000);
+        
+                document.getElementById('lblEmail').style.display='none';
+                email.style.display = 'none';
+                document.getElementById('lblPassword').style.display='none';
+                password.style.display = 'none';
+                
+                signInGoogle.style.display = 'none';
+                signInEmail.style.display = 'none';
+                register.style.display = 'none';
+                signout.style.display = 'none';
+            }).catch( (error) => { 
+                message.style.display='inline';
+                message.innerHTML = error;                
+
+                document.getElementById('lblEmail').style.display='none';
+                email.style.display = 'none';
+                document.getElementById('lblPassword').style.display='none';
+                password.style.display = 'none';
+                
+                signInGoogle.style.display = 'none';
+                signInEmail.style.display = 'none';
+                register.style.display = 'none';
+                signout.style.display = 'none';
+                
+                console.log('Status : ',error);
+                setTimeout( () => {
+                    const auth = firebase.auth();
+                    auth.signOut();            
+                }, 5000);                
+            });
+
         }else{
-            document.getElementById('lblMessage').style.display='none';
+
+            message.style.display='none';
     
             document.getElementById('lblEmail').style.display='none';
             email.style.display = 'none';
