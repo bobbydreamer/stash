@@ -159,7 +159,9 @@ const setUserDetails = user => {
 
     // Check AUTH state change
     firebase.auth().onAuthStateChanged(firebaseUser => {        
-        $("body").fadeIn("fast");
+        
+        $("body").fadeIn("fast");            
+                
         if(firebaseUser){
             
             setUserDetails(firebaseUser).then( (results) => {
@@ -180,7 +182,7 @@ const setUserDetails = user => {
                 setTimeout( () => {
                     // console.log('Routing to /stash')
                     window.location = "/stash";
-                }, 1000);
+                }, 2000);
         
                 document.getElementById('lblEmail').style.display='none';
                 email.style.display = 'none';
@@ -190,7 +192,7 @@ const setUserDetails = user => {
                 signInGoogle.style.display = 'none';
                 signInEmail.style.display = 'none';
                 register.style.display = 'none';
-                signout.style.display = 'none';
+                signout.style.display = 'inline';
             }).catch( (error) => { 
                 message.style.display='inline';
                 message.innerHTML = error;                

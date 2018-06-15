@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', event => {
             //$(stashEdit).html(actionText);
         var stashNote = document.createElement("div");
         $(stashNote).addClass("stash-notes3");
-        $(stashNote).html(notes);
+        $(stashNote).html(notes).linkify({target: '_parent'});
         
         $(stashOthers).append(stashCategory);
         $(stashOthers).append(stashTime);
@@ -269,53 +269,6 @@ document.addEventListener('DOMContentLoaded', event => {
         contentHolder.insertBefore(stashContainer3, contentHolder.childNodes[0]);
     }
 
-
-/*    
-    function makeCard(key, topic, category, dateSaved, actionText, notes){
-        var sc2 = document.createElement("div");
-        $(sc2).attr('style', 'border-left: 10px solid '+ color +';');
-        $(sc2).addClass("stash-container2");        
-                
-        let stct2 = document.createElement("div");
-        $(stct2).addClass("stash-titcattime2");
-            let stitle2 = document.createElement("div");
-            $(stitle2).addClass("stash-title2");
-            $(stitle2).html(topic);
-            let scat2 = document.createElement("div");
-            $(scat2).addClass("stash-category2");
-            $(scat2).html(category);
-            let stim2 = document.createElement("div");
-            $(stim2).addClass("stash-time2");
-            $(stim2).html(unixts2stdts(dateSaved));
-
-            let sedt2 = document.createElement("div");
-            $(sedt2).addClass("stash-edit2");
-            let anchor = document.createElement("a");
-            $(anchor).attr('href', '/put/'+key).attr('class','edit');
-            anchor.innerText = actionText;
-            sedt2.appendChild(anchor);
-
-            let sdel2 = document.createElement("div");
-            $(sdel2).addClass("stash-delete2");
-            let buttonDel = document.createElement("button");
-            $(buttonDel).attr('class','delete').attr('id',user.uid+','+category+','+key);
-            buttonDel.innerText = "REMOVE";
-            sdel2.appendChild(buttonDel);
-
-        let snote2 = document.createElement("div");
-        $(snote2).addClass("stash-notes2");
-        $(snote2).html(notes);
-        $(stct2).append(stitle2);
-        $(stct2).append(scat2);
-        $(stct2).append(stim2);
-        $(stct2).append(sedt2);
-        $(stct2).append(sdel2);
-        $(sc2).append(stct2);
-        $(sc2).append(snote2);
-        //$("#contentHolder").append(sc2);
-        contentHolder.insertBefore(sc2, contentHolder.childNodes[0]);
-    }
-*/
     function messageCard(title, subtitle, close){
         var mc = document.createElement("div");
         $(mc).addClass("message-container");        

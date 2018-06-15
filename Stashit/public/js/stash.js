@@ -186,8 +186,9 @@ document.addEventListener('DOMContentLoaded', event => {
             //$(stashEdit).html(actionText);
         var stashNote = document.createElement("div");
         $(stashNote).addClass("stash-notes3");
-        $(stashNote).html(notes);
-        
+        $(stashNote).html(notes).linkify({target: '_blank'});
+//        $('p').linkify();
+
         $(stashOthers).append(stashCategory);
         $(stashOthers).append(stashTime);
         $(stashOthers).append(stashEdit);

@@ -71,6 +71,7 @@ Sign-in with google credentials
 
 ------------------------------------------------------------------------------------------
 Login page pictures was designed in https://pattern.flaticon.com/#pack=clear-icons
+Linkify - http://soapbox.github.io/linkifyjs/docs/
 ------------------------------------------------------------------------------------------
 Database rules
 
